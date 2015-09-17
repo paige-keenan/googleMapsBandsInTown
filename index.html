@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Bands Near You</title>
+		<link href='http://fonts.googleapis.com/css?family=Droid+Sans:400,700|Open+Sans:800italic,800,400' rel='stylesheet' type='text/css'>
+		<link rel="stylesheet" href="media/css/main.css" />
+	    <script type="text/javascript"
+	      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCc7yqyAUd9LOD5yb6PD9oEHIdvydSoriU">
+	    </script>
+	 
+	</head>
+	<body>
+	<div id="map-canvas"></div>
+
+		<div class="searcher">
+			<h1 class="search-headline">Type The name of your city and find bands near you now</h1>
+			<form name="search" class="middle">
+				Location: <input type="text" />
+				<button type="submit">Quick Search</button>
+				<div class="results">
+					<ul></ul>
+				</div>
+			</form>
+		</div>
+
+		<script type="text/javascript" src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+		<script type="text/javascript" src="media/js/layout.js"></script>
+	</body>
+</html>
