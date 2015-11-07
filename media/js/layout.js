@@ -38,7 +38,6 @@ var myApi = (function(options) {
 
 	function setupListeners() {
 		setupMapSearch();
-		detectListItemClick();
 	}
 
 	function setupMapSearch() {
@@ -159,14 +158,7 @@ var myApi = (function(options) {
         	}
 
 		});
-	}
-
-	function detectListItemClick() {
-		$('.band-info ul li').on('click', function() {
-			console.log('hit');
-			
-		});	
-	} 					
+	}				
 
 							
 	var init = function() {
