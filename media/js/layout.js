@@ -7,7 +7,7 @@ var myApi = (function(options) {
 
 	var myLatlng = new google.maps.LatLng(32.7574, -97.3332);
 	var styles = 
-		[{"featureType":"administrative","elementType":"labels.text.fill","stylers":[{"color":"#444444"}]},{"featureType":"landscape","elementType":"all","stylers":[{"color":"#91A898"}]},{"featureType":"poi","elementType":"all","stylers":[{"visibility":"off"}]},{"featureType":"road","elementType":"all","stylers":[{"saturation":-100},{"lightness":45}]},{"featureType":"road.highway","elementType":"all","stylers":[{"visibility":"simplified"}]},{"featureType":"road.arterial","elementType":"labels.icon","stylers":[{"visibility":"off"}]},{"featureType":"transit","elementType":"all","stylers":[{"visibility":"off"}]},{"featureType":"water","elementType":"all","stylers":[{"color":"#5691E0"},{"visibility":"on"}]}];
+		[{"featureType": "landscape", "elementType": "all", "stylers": [{"hue": "#F1FF00"}, {"saturation": -27.4 }, {"lightness": 9.4 }, {"gamma": 1 } ] }, {"featureType": "poi", "elementType": "all", "stylers": [{"hue": "#9FFF00"}, {"gamma": 1 } ] }, {"featureType": "road.highway", "elementType": "all", "stylers": [{"hue": "#0099FF"}, {"saturation": -20 }, {"lightness": 36.4 }, {"gamma": 1 } ] }, {"featureType": "road.arterial", "elementType": "all", "stylers": [{"hue": "#00FF4F"}, {"gamma": 1 } ] }, {"featureType": "road.local", "elementType": "all", "stylers": [{"hue": "#FFB300"}, {"saturation": -38 }, {"lightness": 11.2 }, {"gamma": 1 } ] }, {"featureType": "water", "elementType": "all", "stylers": [{"hue": "#00B6FF"}, {"saturation": 4.2 }, {"lightness": -63.4 }, {"gamma": 1 } ] } ];
 	var styledMap = new google.maps.StyledMapType(styles,
 		{
 			name: "Styled Map"
@@ -38,10 +38,12 @@ var myApi = (function(options) {
 
 	function setupListeners() {
 		setupMapSearch();
+		detectListItemClick();
 	}
 
 	function setupMapSearch() {
 		$('button').on('click', function(e) {
+			$('.band-info ul').empty();
 			e.preventDefault();
 			var input = $('input').val();	
 
@@ -62,23 +64,57 @@ var myApi = (function(options) {
 		            position: new google.maps.LatLng(newLat, newLong),
 		            map: map,
 		            icon: 'media/img/pin.png',
-		            info: '<h1>' + newContent + '</h1>' +
-		            	  '<h2>Playing at:</h2>' +  
-		            	  '<p>' + venueName + '</p>' +
-		            	  '<h3>' + venueCity + ', ' + venueRegion + '</h3>' +
-		            	  '<a href=' + buyTickets + '>' +'Buy Tickets</a>',
+		            info: newContent,
 		            draggable: false,
 		            animation: google.maps.Animation.DROP
 		        });  
-		        var content = '<div>'+marker.info+'</div>';
-		        bindInfoWindow(marker, map, infowindow, content);
+		        
+				//bind pin and list
+		        bindInfoWindow(marker, map);
+		        map.setCenter(marker.getPosition());
+
+				marker.addListener('click', function() {
+					var currentPin = $(this)[0].info;
+					
+
+					$('.band-info ul li h3').each(function() {
+						var parent    = $(this).parent('.band-info li');
+						var listItems = parent.index();
+						var that      = $(this).text();
+
+						if (that == currentPin) {
+							$('.highlighted').removeClass('highlighted');
+							var listItemHeight = $('.band-info ul li').height();
+							var scrollToHere   = listItemHeight * listItems;
+
+							$('.band-info ul').scrollTop(scrollToHere);
+							$(this).parent('.band-info li').addClass('highlighted');
+						}
+					});
+				});
+        	}
+
+
+
+        	function setList(artistInfo) {
+        		$('.band-info ul').append('<li><h3>'  +
+        								  newContent  +
+        								  '</h3><p>'  +
+        								  venueName   +
+        								  '</p><p>'   +
+        								  venueCity   +
+        								  ', ' 		  +
+        								  venueRegion +
+        								  '<a href='  +
+        								  buyTickets  +
+        								  ' target=\'blank\'>Tickets</a></li>'
+        		);
         	}
 
         	//bind infowindow to a certain set of coordinates
         	function bindInfoWindow(marker, map, infowindow, html) {
 	        	google.maps.event.addListener(marker, 'click', function() {
-	        		infowindow.setContent(html);
-        			infowindow.open(map, this);
+        			$('.band-info').html(html, this);
 	        	})	        		
         	}
 
@@ -114,7 +150,8 @@ var myApi = (function(options) {
  						buyTickets = artistInfo[6];
 
 						if(artistInfo[i] !== 'undefined'){
-							placeMarker(artistInfo);	
+							placeMarker(artistInfo);
+							setList(artistInfo)	
 						}	
  					}
  					
@@ -122,8 +159,14 @@ var myApi = (function(options) {
         	}
 
 		});
-	}	
+	}
 
+	function detectListItemClick() {
+		$('.band-info ul li').on('click', function() {
+			console.log('hit');
+			
+		});	
+	} 					
 
 							
 	var init = function() {
@@ -131,7 +174,6 @@ var myApi = (function(options) {
 	};
 
 	shared.init = init;
-
 	return shared;
 }());
 
