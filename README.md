@@ -7,4 +7,4 @@ This site is a tool for people to use to find the closest bands and shows in the
 * [Bands in Town API](https://www.bandsintown.com/api/overview)
 
 #### To View Project:
-* Clone repo and view in broswer
+* Clone repo and view in broswer.
