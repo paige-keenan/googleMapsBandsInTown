@@ -4,32 +4,32 @@ body {
 }
 
 #map-canvas { 
-	width: 100%;
+	box-shadow: 0px 5px 62px -19px #00719F;
 	height: 50%;
-	position: absolute;
 	margin: 0;
 	padding: 0;
+	position: absolute;
 	top: 0;
-	box-shadow: 0px 5px 62px -19px #00719F;
+	width: 100%;
 	z-index: 1;	
 }
 
 .gm-style-iw {
-	width: 400px; 
 	min-height: 200px;
+	width: 400px; 
 }
 
 h1 {
 	color: #5CC6C7;
 	display: inline-block;
 	font-family: 'PT Sans Narrow', sans-serif;
+	font-size: 40px;
 	font-weight: 800;	
+	letter-spacing: 3px;
+	margin: 30px 0 0;
 	text-align: center;
 	text-transform: uppercase;
 	width: 100%;	
-	letter-spacing: 3px;
-	font-size: 40px;
-	margin: 30px 0 0;
 }
 
 h2 {
@@ -51,15 +51,15 @@ h3 {
 p {
 	color: #fff;
 	font-family: 'PT Sans Narrow', sans-serif;
-	padding: 0 10px;
 	letter-spacing: 1px;
+	padding: 0 10px;
 }
 
 a {
 	color: #F69C50;
-	padding: 0 10px;
 	font-family: 'PT Sans Narrow', sans-serif;
 	letter-spacing: 1px;
+	padding: 0 10px;
 	transition: .2s ease-out;
 }
 
@@ -70,10 +70,10 @@ a:hover {
 
 .content {
 	background: #242A35;
+	min-height: 50%;
 	position: absolute;
 	top: 50%;
 	width: 100%;
-	min-height: 50%;
 }
 
 .content-container {
@@ -92,45 +92,45 @@ form input {
 }
 
 button {
+	background: #5CC6C7;
+	border-radius: 25px;
 	border: 0;
-	padding: 10px 15px;
 	font-family: 'PT Sans Narrow', sans-serif;
+	margin: 0 0 0 10px;
+	padding: 10px 15px;
 	text-transform: uppercase;
 	vertical-align: middle;
-	background: #5CC6C7;
-	margin: 0 0 0 10px;
-	border-radius: 25px;
 }
 
 input {
 	border: 0;
-	vertical-align: middle;
 	padding: 10px 20px;
+	vertical-align: middle;
 }
 
 .number {
-	font-family: 'PT Sans Narrow', sans-serif;
 	border-radius: 100%;
-	width: 50px;
-	line-height: 50px;
+	border: 5px solid #5CC6C7;
+	font-family: 'PT Sans Narrow', sans-serif;
+	font-size: 38px;
 	font-weight: 600;
 	height: 50px;
-	border: 5px solid #5CC6C7;
-	text-align: center;
-	font-size: 38px;
+	line-height: 50px;
 	padding: 0;
+	text-align: center;
+	width: 50px;
 }
 
 .searcher {
 	display: inline-block;
-	width: 49%;
 	padding: 0 30px 20px;
+	width: 49%;
 }
 
 .band-info {
+	display: inline-block;
 	vertical-align: top;
 	width: 40%;
-	display: inline-block;
 }
 
 .search-headline {
@@ -146,9 +146,9 @@ input {
 
 .band-info ul li {
 	background: #3B4658;
+	display: inline-block;
 	list-style: none;
 	width: 100%;
-	display: inline-block;
 }
 
 .band-info ul li:nth-child(odd) {
