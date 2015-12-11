@@ -8,3 +8,4 @@ This site is a tool for people to use to find the closest bands and shows in the
 
 #### To View Project:
 * Clone repo and view in broswer.
+* [View Live](http://paigeinteractive.com/maps/index.html)
